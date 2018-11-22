@@ -1,0 +1,13 @@
+server:
+  port: 8443
+  ssl:
+    key-store: classpath:keystore.jks
+    key-store-password: 179510
+    key-password: 179510
+    protocol: TLSv1.2
+  http2:
+    enabled: true
+  use-forward-headers: true
+
+coapserver:
+  port: 8848

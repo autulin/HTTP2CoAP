@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<body><h1>Californium (Cf) Proxy</h1>URI Template <tt>https://localhost:8080/proxy/{coap-uri}</tt> or use this form:
+<form method="get" onsubmit="this.action='/proxy/'+this.uri.value;">
+    <input type="text" size="50" id="uri"/>
+    <input type="submit" value="GET"/>
+</form>
+
+<form id="pf">
+    <input type="text" size="50" id="post_uri"/>
+    <input type="text" size="50" id="post_body" name="d"/>
+    <input type="submit" value="POST"/>
+</form>
+
+<script type="text/javascript">
+    $('form#pf').on('submit', function (event) {
+        event.preventDefault();
+        var formData = $("form#abc").serializeArray();
+        console.log(formData);
+
+        $.ajax({
+            url: '/proxy/'+$("#post_uri").value,
+            type: "POST",
+            data: formData,
+            dataType: 'jsonp',
+            crossDomain: true,
+            success:function(json){
+                $('#app').html('<h1>Thank You</h1>');
+            },
+            error:function(){
+                $('#app').html('<h1>Thank You</h1>');
+            }
+        });
+    });
+</script>
+</body>
+</html>
