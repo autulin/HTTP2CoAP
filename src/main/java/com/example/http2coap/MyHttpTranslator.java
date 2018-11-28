@@ -448,7 +448,8 @@ public final class MyHttpTranslator {
                     // simple parser
                     String[] strings = coapContentTypeString.split(";\\s*charset=");
                     contentType = strings[0];
-                    charset = Charset.forName(strings[1]);
+                    if (strings.length > 1)
+                        charset = Charset.forName(strings[1]);
                 } catch (UnsupportedCharsetException e) {
                     LOGGER.finer("Cannot convert string to ContentType: " + e.getMessage());
                     contentType = APPLICATION_OCTET_STREAM;
